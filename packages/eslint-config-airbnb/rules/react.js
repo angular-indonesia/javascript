@@ -71,8 +71,7 @@ module.exports = {
 
     // Limit maximum of props on a single line in JSX
     // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-max-props-per-line.md
-    // TODO: enable (semver-minor)
-    'react/jsx-max-props-per-line': ['off', { maximum: 1, when: 'multiline' }],
+    'react/jsx-max-props-per-line': ['error', { maximum: 1, when: 'multiline' }],
 
     // Prevent usage of .bind() in JSX props
     // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md
@@ -267,6 +266,10 @@ module.exports = {
     // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/forbid-component-props.md
     'react/forbid-component-props': ['off', { forbid: [] }],
 
+    // Forbid certain elements
+    // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/forbid-elements.md
+    'react/forbid-elements': ['off', { forbid: [], }],
+
     // Prevent problem with children and props.dangerouslySetInnerHTML
     // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-danger-with-children.md
     'react/no-danger-with-children': 'error',
@@ -307,19 +310,13 @@ module.exports = {
     // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/require-default-props.md
     'react/require-default-props': 'error',
 
-    'react/forbid-elements': ['off', {
-      forbid: [
-      ],
-    }],
-
     // Forbids using non-exported propTypes
     // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/forbid-foreign-prop-types.md
     'react/forbid-foreign-prop-types': 'off',
 
     // Prevent void DOM elements from receiving children
     // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/void-dom-elements-no-children.md
-    // TODO: enable (semver-minor)
-    'react/void-dom-elements-no-children': 'off',
+    'react/void-dom-elements-no-children': 'error',
   },
 
   settings: {
@@ -330,7 +327,7 @@ module.exports = {
     },
     react: {
       pragma: 'React',
-      version: '0.14'
+      version: '0.15'
     },
   }
 };
