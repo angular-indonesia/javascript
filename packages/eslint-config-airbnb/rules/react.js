@@ -49,9 +49,8 @@ module.exports = {
     'react/jsx-closing-bracket-location': ['error', 'line-aligned'],
 
     // Validate closing tag location in JSX
-    // https://github.com/yannickcr/eslint-plugin-react/blob/9e13ae2c51e44872b45cc15bf1ac3a72105bdd0e/docs/rules/jsx-closing-tag-location.md
-    // TODO: enable, semver-minor
-    'react/jsx-closing-tag-location': 'off',
+    // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-closing-tag-location.md
+    'react/jsx-closing-tag-location': 'error',
 
     // Enforce or disallow spaces inside of curly braces in JSX attributes
     // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-curly-spacing.md
@@ -361,5 +360,10 @@ module.exports = {
       pragma: 'React',
       version: '15.0'
     },
+    propWrapperFunctions: [
+      'forbidExtraProps', // https://www.npmjs.com/package/airbnb-prop-types
+      'exact', // https://www.npmjs.com/package/prop-types-exact
+      'Object.freeze', // https://tc39.github.io/ecma262/#sec-object.freeze
+    ],
   }
 };

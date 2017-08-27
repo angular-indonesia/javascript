@@ -2928,11 +2928,16 @@ Other Style Guides
       // ...
     ];
 
+    // also good
+    const httpRequests = [
+      // ...
+    ];
+
     // best
     import TextMessageContainer from './containers/TextMessageContainer';
 
     // best
-    const Requests = [
+    const requests = [
       // ...
     ];
     ```
@@ -3308,6 +3313,7 @@ Other Style Guides
   - **Jam3**: [Jam3/Javascript-Code-Conventions](https://github.com/Jam3/Javascript-Code-Conventions)
   - **JeopardyBot**: [kesne/jeopardy-bot](https://github.com/kesne/jeopardy-bot/blob/master/STYLEGUIDE.md)
   - **JSSolutions**: [JSSolutions/javascript](https://github.com/JSSolutions/javascript)
+  - **Kaplan Komputing**: [kaplankomputing/javascript](https://github.com/kaplankomputing/javascript)
   - **KickorStick**: [kickorstick/javascript](https://github.com/kickorstick/javascript)
   - **Kinetica Solutions**: [kinetica/javascript](https://github.com/kinetica/Javascript-style-guide)
   - **LEINWAND**: [LEINWAND/javascript](https://github.com/LEINWAND/javascript)
