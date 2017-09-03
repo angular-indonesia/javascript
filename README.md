@@ -2,6 +2,8 @@
 
 *A mostly reasonable approach to JavaScript*
 
+> **Note**: this guide assumes you are using [Babel](https://babeljs.io), and requires that you use [babel-preset-airbnb](https://npmjs.com/babel-preset-airbnb) or the equivalent. It also assumes you are installing shims/polyfills in your app, with [airbnb-browser-shims](https://npmjs.com/airbnb-browser-shims) or the equivalent.
+
 [![Downloads](https://img.shields.io/npm/dm/eslint-config-airbnb.svg)](https://www.npmjs.com/package/eslint-config-airbnb)
 [![Downloads](https://img.shields.io/npm/dm/eslint-config-airbnb-base.svg)](https://www.npmjs.com/package/eslint-config-airbnb-base)
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/airbnb/javascript?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
@@ -44,6 +46,7 @@ Other Style Guides
   1. [jQuery](#jquery)
   1. [ECMAScript 5 Compatibility](#ecmascript-5-compatibility)
   1. [ECMAScript 6+ (ES 2015+) Styles](#ecmascript-6-es-2015-styles)
+  1. [Standard Library](#standard-library)
   1. [Testing](#testing)
   1. [Performance](#performance)
   1. [Resources](#resources)
@@ -2395,13 +2398,21 @@ Other Style Guides
 
     }
 
-    // also bad
+    // bad
     if (baz) {
 
       console.log(qux);
     } else {
       console.log(foo);
 
+    }
+
+    // bad
+    class Foo {
+
+      constructor(bar) {
+        this.bar = bar;
+      }
     }
 
     // good
@@ -3148,10 +3159,50 @@ Other Style Guides
 
 **[⬆ back to top](#table-of-contents)**
 
+## Standard Library
+
+  The [Standard Library](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects)
+  contains utilities that are functionally broken but remain for legacy reasons.
+
+  <a name="standard-library--isnan"></a>
+  - [29.1](#standard-library--isnan) Use `Number.isNaN` instead of global `isNaN`.
+    eslint: [`no-restricted-globals`](http://eslint.org/docs/rules/no-restricted-globals)
+
+    > Why? The global `isNaN` coerces non-numbers to numbers, returning true for anything that coerces to NaN.
+    If this behavior is desired, make it explicit.
+
+    ```javascript
+    // bad
+    isNaN('1.2'); // false
+    isNaN('1.2.3'); // true
+
+    // good
+    Number.isNaN('1.2.3'); // false
+    Number.isNaN(Number('1.2.3')); // true
+    ```
+
+  <a name="standard-library--isfinite"></a>
+  - [29.2](#standard-library--isfinite) Use `Number.isFinite` instead of global `isFinite`.
+    eslint: [`no-restricted-globals`](http://eslint.org/docs/rules/no-restricted-globals)
+
+    > Why? The global `isFinite` coerces non-numbers to numbers, returning true for anything that coerces to a finite number.
+    If this behavior is desired, make it explicit.
+
+    ```javascript
+    // bad
+    isFinite('2e3'); // true
+
+    // good
+    Number.isFinite('2e3'); // false
+    Number.isFinite(parseInt('2e3', 10)); // true
+    ```
+
+**[⬆ back to top](#table-of-contents)**
+
 ## Testing
 
   <a name="testing--yup"></a><a name="28.1"></a>
-  - [29.1](#testing--yup) **Yup.**
+  - [30.1](#testing--yup) **Yup.**
 
     ```javascript
     function foo() {
@@ -3160,7 +3211,7 @@ Other Style Guides
     ```
 
   <a name="testing--for-real"></a><a name="28.2"></a>
-  - [29.2](#testing--for-real) **No, but seriously**:
+  - [30.2](#testing--for-real) **No, but seriously**:
     - Whichever testing framework you use, you should be writing tests!
     - Strive to write many small pure functions, and minimize where mutations occur.
     - Be cautious about stubs and mocks - they can make your tests more brittle.
