@@ -364,15 +364,31 @@ Other Style Guides
     ```
 
   <a name="arrays--from"></a><a name="4.4"></a>
-  - [4.4](#arrays--from) To convert an array-like object to an array, use [Array.from](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from).
+  - [4.4](#arrays--from) To convert an array-like object to an array, use spreads `...` instead of [Array.from](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from).
 
     ```javascript
     const foo = document.querySelectorAll('.foo');
+
+    // good
     const nodes = Array.from(foo);
+
+    // best
+    const nodes = [...foo];
+    ```
+
+  <a name="arrays--mapping"></a>
+  - [4.5](#arrays--mapping) Use [Array.from](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from) instead of spread `...` for mapping over iterables, because it avoids creating an intermediate array.
+
+    ```javascript
+    // bad
+    const bar = [...foo].map(bar);
+
+    // good
+    const bar = Array.from(foo, bar);
     ```
 
   <a name="arrays--callback-return"></a><a name="4.5"></a>
-  - [4.5](#arrays--callback-return) Use return statements in array method callbacks. It’s ok to omit the return if the function body consists of a single statement returning an expression without side effects, following [8.2](#arrows--implicit-return). eslint: [`array-callback-return`](http://eslint.org/docs/rules/array-callback-return)
+  - [4.6](#arrays--callback-return) Use return statements in array method callbacks. It’s ok to omit the return if the function body consists of a single statement returning an expression without side effects, following [8.2](#arrows--implicit-return). eslint: [`array-callback-return`](http://eslint.org/docs/rules/array-callback-return)
 
     ```javascript
     // good
@@ -420,8 +436,8 @@ Other Style Guides
     });
     ```
 
-<a name="arrays--bracket-newline"></a>
-  - [4.6](#arrays--bracket-newline) Use line breaks after open and before close array brackets if an array has multiple lines
+  <a name="arrays--bracket-newline"></a>
+  - [4.7](#arrays--bracket-newline) Use line breaks after open and before close array brackets if an array has multiple lines
 
   ```javascript
   // bad
@@ -1898,16 +1914,15 @@ Other Style Guides
       ? "bar"
       : value1 > value2 ? "baz" : null;
 
-    // better
+    // split into 2 separated ternary expressions
     const maybeNull = value1 > value2 ? 'baz' : null;
 
+    // better
     const foo = maybe1 > maybe2
       ? 'bar'
       : maybeNull;
 
     // best
-    const maybeNull = value1 > value2 ? 'baz' : null;
-
     const foo = maybe1 > maybe2 ? 'bar' : maybeNull;
     ```
 
@@ -2511,7 +2526,7 @@ Other Style Guides
 
 ## Commas
 
-<a name="commas--leading-trailing"></a><a name="19.1"></a>
+  <a name="commas--leading-trailing"></a><a name="19.1"></a>
   - [20.1](#commas--leading-trailing) Leading commas: **Nope.** eslint: [`comma-style`](http://eslint.org/docs/rules/comma-style.html) jscs: [`requireCommaBeforeLineBreak`](http://jscs.info/rule/requireCommaBeforeLineBreak)
 
     ```javascript
@@ -3355,6 +3370,7 @@ Other Style Guides
   - **Generation Tux**: [GenerationTux/javascript](https://github.com/generationtux/styleguide)
   - **GoodData**: [gooddata/gdc-js-style](https://github.com/gooddata/gdc-js-style)
   - **Grooveshark**: [grooveshark/javascript](https://github.com/grooveshark/javascript)
+  - **Grupo-Abraxas**: [Grupo-Abraxas/javascript](https://github.com/Grupo-Abraxas/javascript)
   - **Honey**: [honeyscience/javascript](https://github.com/honeyscience/javascript)
   - **How About We**: [howaboutwe/javascript](https://github.com/howaboutwe/javascript-style-guide)
   - **Huballin**: [huballin/javascript](https://github.com/huballin/javascript)
