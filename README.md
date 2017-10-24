@@ -68,6 +68,7 @@ Other Style Guides
     - `boolean`
     - `null`
     - `undefined`
+    - `symbol`
 
     ```javascript
     const foo = 1;
@@ -77,6 +78,8 @@ Other Style Guides
 
     console.log(foo, bar); // => 1, 9
     ```
+
+    - Symbols cannot be faithfully polyfilled, so they should not be used when targeting browsers/environments that don't support them natively.
 
   <a name="types--complex"></a><a name="1.2"></a>
   - [1.2](#types--complex)  **Complex**: When you access a complex type you work on a reference to its value.
@@ -1941,6 +1944,38 @@ Other Style Guides
     const foo = a || b;
     const bar = !!c;
     const baz = !c;
+    ```
+
+  <a name="comparison--no-mixed-operators"></a>
+  - [15.8](#comparison--no-mixed-operators) Enclose operators in parentheses when they are mixed in a statement. When mixing arithmetic operators, do not mix `**` and `%` with themselves or with `+`, `-`, `*`, & `/`. eslint: [`no-mixed-operators`](http://eslint.org/docs/rules/no-mixed-operators.html)
+
+    > Why? This improves readability and clarifies the developer’s intention.
+
+    ```javascript
+    // bad
+    const foo = a && b < 0 || c > 0 || d + 1 === 0;
+
+    // bad
+    const bar = a ** b - 5 % d;
+
+    // bad
+    if (a || b && c) {
+      return d;
+    }
+
+    // good
+    const foo = (a && b < 0) || c > 0 || (d + 1 === 0);
+
+    // good
+    const bar = (a ** b) - (5 % d);
+
+    // good
+    if ((a || b) && c) {
+      return d;
+    }
+
+    // good
+    const bar = a + b / c * d;
     ```
 
 **[⬆ back to top](#table-of-contents)**
