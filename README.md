@@ -405,14 +405,12 @@ Other Style Guides
     [1, 2, 3].map(x => x + 1);
 
     // bad - no returned value means `memo` becomes undefined after the first iteration
-    const flat = {};
     [[0, 1], [2, 3], [4, 5]].reduce((memo, item, index) => {
       const flatten = memo.concat(item);
       memo[index] = flatten;
     });
 
     // good
-    const flat = {};
     [[0, 1], [2, 3], [4, 5]].reduce((memo, item, index) => {
       const flatten = memo.concat(item);
       memo[index] = flatten;
@@ -1983,7 +1981,7 @@ Other Style Guides
 ## Blocks
 
   <a name="blocks--braces"></a><a name="16.1"></a>
-  - [16.1](#blocks--braces) Use braces with all multi-line blocks.
+  - [16.1](#blocks--braces) Use braces with all multi-line blocks. eslint: [`nonblock-statement-body-position`](https://eslint.org/docs/rules/nonblock-statement-body-position)
 
     ```javascript
     // bad
