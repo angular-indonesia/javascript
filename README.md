@@ -8,6 +8,8 @@
 [![Downloads](https://img.shields.io/npm/dm/eslint-config-airbnb-base.svg)](https://www.npmjs.com/package/eslint-config-airbnb-base)
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/airbnb/javascript?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
+This guide is available in other languages too. See [Translation](#translation)
+
 Other Style Guides
 
   - [ES5 (Deprecated)](https://github.com/airbnb/javascript/tree/es5-deprecated/es5)
@@ -2173,6 +2175,19 @@ Other Style Guides
     }
     ```
 
+  <a name="control-statement--value-selection"></a>
+  - [17.2](#control-statements--value-selection) Don't use selection operators in place of control statements.
+
+    ```javascript
+    // bad
+    !isRunning && startRunning();
+
+    // good
+    if (!isRunning) {
+      startRunning();
+    }
+    ```
+
 **[⬆ back to top](#table-of-contents)**
 
 ## Comments
@@ -2800,7 +2815,7 @@ Other Style Guides
 
     // bad - raises exception
     const reaction = "No! That's impossible!"
-    (async function meanwhileOnTheFalcon(){
+    (async function meanwhileOnTheFalcon() {
       // handle `leia`, `lando`, `chewie`, `r2`, `c3p0`
       // ...
     }())
@@ -2820,7 +2835,7 @@ Other Style Guides
 
     // good
     const reaction = "No! That's impossible!";
-    (async function meanwhileOnTheFalcon(){
+    (async function meanwhileOnTheFalcon() {
       // handle `leia`, `lando`, `chewie`, `r2`, `c3p0`
       // ...
     }());
@@ -2993,6 +3008,11 @@ Other Style Guides
 
     // good
     this.firstName = 'Panda';
+
+    // good, in environments where WeakMaps are available
+    // see https://kangax.github.io/compat-table/es6/#test-WeakMap
+    const firstNames = new WeakMap();
+    firstNames.set(this, 'Panda');
     ```
 
   <a name="naming--self-this"></a><a name="22.5"></a>
