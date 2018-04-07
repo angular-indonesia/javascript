@@ -74,6 +74,7 @@ module.exports = {
         'tests/**', // also common npm pattern
         'spec/**', // mocha, rspec-like pattern
         '**/__tests__/**', // jest pattern
+        '**/__mocks__/**', // jest pattern
         'test.{js,jsx}', // repos with a single test file
         'test-*.{js,jsx}', // repos with multiple top-level test files
         '**/*.{test,spec}.{js,jsx}', // tests where the extension denotes that it is a test
@@ -225,6 +226,10 @@ module.exports = {
     // Forbid a module from importing itself
     // https://github.com/benmosher/eslint-plugin-import/blob/44a038c06487964394b1e15b64f3bd34e5d40cde/docs/rules/no-self-import.md
     'import/no-self-import': 'error',
+
+    // Forbid cyclical dependencies between modules
+    // https://github.com/benmosher/eslint-plugin-import/blob/d81f48a2506182738409805f5272eff4d77c9348/docs/rules/no-cycle.md
+    'import/no-cycle': ['error', { maxDepth: Infinity }],
 
     // Ensures that there are no useless path segments
     // https://github.com/benmosher/eslint-plugin-import/issues/1032
